@@ -1,5 +1,5 @@
-function solveController($scope, $http, $location) {
-	alert("solveController");
-}
-
-export default solveController;
+app.controller('solveController', ['$scope', '$http', function($scope, $http, $location) {
+  		console.log("solve");
+  		alert("solveController");
+	}
+]);

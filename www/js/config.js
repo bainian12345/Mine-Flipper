@@ -1,17 +1,18 @@
-function config($routeProvider, $locationProvider, $httpProvider) {
-  $routeProvider
-      .when('/', {
+app.config(function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('/', {
+          url: '/',
           templateUrl: '../views/home.html',
           controller: 'homeController'
       })
-      .when('/rules', {
-          templateUrl: '../views/plant.html',
+      .state('rules', {
+          url: '/rules',
+          templateUrl: '../views/rules.html',
       })
-      .when('/solve', {
+      .state('solve', {
+          url: '/solve',
           templateUrl: '../views/solve.html',
           controller: 'solveController'
-      })
-      .otherwise({
-          redirectTo: '/'
       });
-}
+      $urlRouterProvider.otherwise('/');
+});

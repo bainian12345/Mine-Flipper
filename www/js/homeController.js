@@ -1,5 +1,5 @@
-function homeController($scope, $http, $location) {
-	alert('homeController');
-}
-
-export default homeController;
+app.controller('homeController', ['$scope', '$http', function($scope, $http, $location) {
+  		console.log("home");
+  		alert('homeController');
+	}
+]);
