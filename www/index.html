@@ -32,16 +32,19 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
-    <script src="js/homeController.js"></script>
+    <script src="js/mainController.js"></script>
+    <script src="js/playController.js"></script>
     <script src="js/solveController.js"></script>
   </head>
-  <body ng-app="app">
-      <ion-header-bar> 
-          <a href="/#/rules">rules</a>
-          <a href="/">play</a>
-          <a href="/#solve">solve</a>
+  <body ng-app="app" ng-controller="mainController">
+      <ion-header-bar class="header">
+          <ul>
+              <li ng-repeat="page in pages" ng-click="clickme($event, page)" ng-class="{active: page.active}">
+                  <a href="{{page.href}}">{{page.name}}</a>
+              </li>
+          </ul>
       </ion-header-bar>
-      <ion-nav-view class="has-header">
+      <ion-nav-view class="content">
       </ion-nav-view>
   </body>
 </html>

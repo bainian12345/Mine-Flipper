@@ -1,1 +1,35 @@
+.header {
+	background-color: #47b39d;
+	height: 10vh;
+	padding: 0;
+}
+.header ul {
+	display: flex;
+	width: 100%;
+}
+.header li {
+	list-style: none;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+.header li:hover {
+	background-color: #3a9280;
+}
+.header ul .active {
+	background-color: #2c6d60;
+}
+.header a {
+	display: inline-block;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 3em;
+    line-height: 10vh;
+	color: #fff;
+	text-decoration: none;
+	width: 100%;
+}
+.content {
+	top: 10vh;
+}
 

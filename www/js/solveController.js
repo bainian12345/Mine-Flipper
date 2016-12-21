@@ -1,5 +1,3 @@
-app.controller('solveController', ['$scope', '$http', function($scope, $http, $location) {
-  		console.log("solve");
-  		alert("solveController");
-	}
-]);
+app.controller('solveController', function($scope) {
+	alert("solveController");
+});
