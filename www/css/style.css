@@ -32,4 +32,7 @@
 .content {
 	top: 10vh;
 }
-
+.view {
+	background-color: #ffdd99;
+	box-sizing: border-box;
+}

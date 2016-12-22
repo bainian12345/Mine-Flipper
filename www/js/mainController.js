@@ -1,5 +1,5 @@
 app.controller('mainController', function($scope, $location) {
-	$scope.clickme = function($event, page) {
+	$scope.switchPage = function($event, page) {
 		for (var i = 0; i < $scope.pages.length; i++) {
 			$scope.pages[i].active = false;
 		}

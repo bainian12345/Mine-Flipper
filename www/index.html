@@ -32,6 +32,7 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/gameService.js"></script>
     <script src="js/mainController.js"></script>
     <script src="js/playController.js"></script>
     <script src="js/solveController.js"></script>
@@ -39,7 +40,7 @@
   <body ng-app="app" ng-controller="mainController">
       <ion-header-bar class="header">
           <ul>
-              <li ng-repeat="page in pages" ng-click="clickme($event, page)" ng-class="{active: page.active}">
+              <li ng-repeat="page in pages" ng-click="switchPage($event, page)" ng-class="{active: page.active}">
                   <a href="{{page.href}}">{{page.name}}</a>
               </li>
           </ul>
