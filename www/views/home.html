@@ -1,1 +1,11 @@
-<ionic-content><p>home</p></ionic-content>
+<ionic-content class="view">
+	<div class="board">
+		<div ng-repeat="row in board" class="board-row">
+			<span ng-repeat="cell in row track by $index" class="board-cell">{{cell.value}}</span>
+		</div>
+	</div>
+	<div class="buttons">
+		<button ng-click="startGame()">Start</button>
+		<button ng-click="reveal()">Reveal</button>
+	</div>
+</ionic-content>
