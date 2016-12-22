@@ -27,7 +27,6 @@ app.service('gameService', function() {
 				board[row][col] = cell;
 			}
 		}
-		console.log(board);
 		return board;
 	};
 });

@@ -28,8 +28,40 @@
 }
 .content {
 	top: 10vh;
+	background-color: #ebebeb;
 }
 .view {
 	background-color: #ffdd99;
 	box-sizing: border-box;
+	max-width: 764px;
+	margin: 0 auto;
+}
+.board {
+	padding: 10px 30px;
+}
+.board .board-row {
+	display: flex;
+}
+.board .board-row .board-cell {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	box-sizing: border-box;
+}
+.buttons-container {
+	width: 100%;
+	display: flex;
+}
+.buttons-container button {
+	margin: 0 auto;
+	width: 150px;
+	height: 40px;
+	border-radius: 5px;
+	box-shadow: none;
+	border-width: 2px;
+	background-color: #cc3300;
+	color: #fff;
+	font-size: 1.5em;
+	border-color: #992600;
 }
