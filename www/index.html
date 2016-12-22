@@ -40,8 +40,8 @@
   <body ng-app="app" ng-controller="mainController">
       <ion-header-bar class="header">
           <ul>
-              <li ng-repeat="page in pages" ng-click="switchPage($event, page)">
-                  <a href="{{page.href}}" ng-class="{active: page.active}">{{page.name}}</a>
+              <li ng-repeat="page in pages" ng-click="switchPage($event, page)" ng-class="{active: page.active}">
+                  <a href="{{page.href}}">{{page.name}}</a>
               </li>
           </ul>
       </ion-header-bar>
