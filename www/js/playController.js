@@ -1,16 +1,15 @@
 app.controller('playController', function($scope, gameService) {
 
 	$scope.startGame = function() {
-		$scope.board = gameService.startGame(gameService.aiBoard);
+		$scope.game = gameService.startGame(gameService.multiGame);
 	}
 
 	$scope.flip = function(cell) {
-		gameService.flip($scope.board, cell);
+		gameService.flip($scope.game, cell);
 	}
 
-	$scope.reveal = function() {
-		gameService.board = ["1", "2"];
+	$scope.stopFlipping = function() {
+		gameService.stopFlipping($scope.game);
 	};
-
-	$scope.startGame(gameService.aiBoard);
+	$scope.startGame(gameService.multiGame);
 });

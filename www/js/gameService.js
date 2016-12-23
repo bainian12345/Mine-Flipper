@@ -3,7 +3,7 @@ app.service('gameService', function() {
 		ROWS = 5,
 		COLS = 5,
 		GOOD_GRIDS = ROWS * COLS - MINES;
-	this.aiBoard = [];
+	this.multiGame = {};
 
 	function initSums(length) {
 		var sums = new Array(length);
@@ -13,7 +13,7 @@ app.service('gameService', function() {
 		return sums;
 	}
 
-	this.startGame = function(board) {
+	this.startGame = function(game) {
 		var mine_positions = {};
 		for (var i = 0, num; i < MINES; i++) {
 			while (!num || mine_positions[num - 1]) {
@@ -21,22 +21,23 @@ app.service('gameService', function() {
 			}
 			mine_positions[num - 1] = true;
 		}
-		board = {
-			grids: new Array(ROWS),
+		game = {
+			board: new Array(ROWS),
 			hSums: initSums(ROWS),
 			vSums: initSums(COLS),
 			playerTurn: 1,
 			playerPoints: [0, 0],
+			stopped: null,
 			winner: null
 		};
 		for (var row = 0, count = 0; row < ROWS; row++) {
-			board.grids[row] = new Array(COLS);
+			game.board[row] = new Array(COLS);
 			for (var col = 0, cell; col < COLS; col++) {
 				cell = {flippedBy: 0}
 				if (mine_positions[count]) {
 					cell.value = 0; // 0 represents a mine
-					board.hSums[row].mines++;
-					board.vSums[col].mines++;
+					game.hSums[row].mines++;
+					game.vSums[col].mines++;
 				}
 				else if (Math.random() < (15 / GOOD_GRIDS)) cell.value = 1;
 				else if (Math.random() < (17 / GOOD_GRIDS)) cell.value = 2;
@@ -44,20 +45,42 @@ app.service('gameService', function() {
 				cell.row = row;
 				cell.col = col;
 				count++;
-				board.grids[row][col] = cell;
-				board.hSums[row].values += cell.value;
-				board.vSums[col].values += cell.value;
+				game.board[row][col] = cell;
+				game.hSums[row].values += cell.value;
+				game.vSums[col].values += cell.value;
 			}
 		}
-		return board;
+		return game;
 	};
 
-	this.flip = function(board, cell) {
-		var turn = board.playerTurn;
-		if (!cell || cell.flippedBy || board.winner || !turn) return;
-		if (cell.value === 0) board.winner = (turn === 1) ? 2 : 1;
-		board.grids[cell.row][cell.col].flippedBy = turn;
-		board.playerPoints[turn - 1] += cell.value;
-		board.playerTurn = (turn === 1) ? 2 : 1;
+	this.flip = function(game, cell) {
+		var turn = game.playerTurn,
+			stopped = game.stopped;
+		if (!cell || cell.flippedBy || game.winner || !turn) return;
+		game.board[cell.row][cell.col].flippedBy = turn;
+		if (cell.value === 0) {
+			game.winner = (turn === 1) ? 2 : 1;
+			return;
+		}
+		game.playerPoints[turn - 1] += cell.value;
+		game.playerTurn = ((turn === 1 && stopped !== 2) || stopped === 1) ? 2 : 1;
+		if (stopped && game.playerPoints[turn - 1] > game.playerPoints[stopped - 1]) game.winner = turn;
+	}
+
+	this.stopFlipping = function(game) {
+		if (game.stopped) {
+			game.winner = (game.playerPoints[0] > game.playerPoints[1]) ? 1 : 2;
+			return;
+		}
+		if (game.playerTurn === 1 && game.playerPoints[0] < game.playerPoints[1]) {
+			game.winner = 2;
+			return;
+		}
+		if (game.playerTurn === 2 && game.playerPoints[0] > game.playerPoints[1]) {
+			game.winner = 1;
+			return;
+		}
+		game.stopped = game.playerTurn;
+		game.playerTurn = (game.playerTurn === 1) ? 2 : 1;
 	}
 });

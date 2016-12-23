@@ -1,43 +1,43 @@
 <ionic-content class="view">
-	<div ng-class="{'hidden': !board.winner}" class="game-over">
+	<div ng-class="{'hidden': !game.winner}" class="game-over">
 		<span>Game Over! Winner is </span><br>
-		<span ng-class="{'player1': board.winner === 1, 'player2': board.winner === 2}">{{(board.winner === 1) ? "Player 1" : "Player 2"}}</span>
+		<span ng-class="{'player1': game.winner === 1, 'player2': game.winner === 2}">{{(game.winner === 1) ? "Player 1" : "Player 2"}}</span>
 	</div>
 	<div class="board">
 		<div class="players-container">
-			<div class="players" ng-class="{'player1-active': board.playerTurn === 1}">
+			<div class="players" ng-class="{'player1-active': game.playerTurn === 1}">
 				<span>Player 1</span>
-				<span class="points1 player1">{{board.playerPoints[0]}}</span>
+				<span class="points1 player1">{{game.playerPoints[0]}}</span>
 			</div>
-			<div class="players" ng-class="{'player2-active': board.playerTurn === 2}">
-				<span class="points2 player2">{{board.playerPoints[1]}}</span>
+			<div class="players" ng-class="{'player2-active': game.playerTurn === 2}">
+				<span class="points2 player2">{{game.playerPoints[1]}}</span>
 				<span>Player 2</span>
 			</div>
 		</div>
-		<div ng-repeat="row in board.grids" class="board-row">
+		<div ng-repeat="row in game.board" class="board-row">
 			<div ng-repeat="cell in row track by $index" class="board-cell {{'flipped-by'+cell.flippedBy}}" ng-click="flip(cell)">
 				<span ng-if="cell.flippedBy">{{cell.value}}</span>
 			</div>
 			<div class="sum-cell">
 				<div class="sum values-sum">
 					<span class="icon"><img src="../img/sum.png"></span>
-					<span>{{board.hSums[$index].values}}</span>
+					<span>{{game.hSums[$index].values}}</span>
 				</div>
 				<div class="sum mines-sum">
 					<span class="icon"><img src="../img/mine.png"></span>
-					<span>{{board.hSums[$index].mines}}</span>
+					<span>{{game.hSums[$index].mines}}</span>
 				</div>
 			</div>
 		</div>
 		<div class="board-row">
-			<div ng-repeat="vSum in board.vSums track by $index" class="sum-cell">
+			<div ng-repeat="vSum in game.vSums track by $index" class="sum-cell">
 				<div class="sum values-sum">
 					<span class="icon"><img src="../img/sum.png"></span>
-					<span>{{board.vSums[$index].values}}</span>
+					<span>{{game.vSums[$index].values}}</span>
 				</div>
 				<div class="sum mines-sum">
 					<span class="icon"><img src="../img/mine.png"></span>
-					<span>{{board.vSums[$index].mines}}</span>
+					<span>{{game.vSums[$index].mines}}</span>
 				</div>
 			</div>
 			<div></div>
@@ -45,6 +45,6 @@
 	</div>
 	<div class="buttons-container">
 		<button ng-click="startGame()">Start</button>
-		<button ng-click="reveal()">Reveal</button>
+		<button ng-click="stopFlipping()">Stop Flipping</button>
 	</div>
 </ionic-content>
