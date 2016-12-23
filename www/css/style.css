@@ -47,17 +47,16 @@
 	width: 100%;
 	text-align: center;
 	vertical-align: middle;
-	padding: 7% 10px 4% 10px;
+	padding: 5% 10px 3% 10px;
 }
 .board .board-cell {
 	display: inline-block;
-	padding-top: 8%;
 	box-sizing: border-box;
 	font-size: 2em;
 	border: 1px solid #000;
 }
 .board .board-row .sum-cell {
-	padding: 4% 10px 7% 10px;
+	padding: 3% 10px 5% 10px;
 }
 .board .sum-cell > div {
 	display: inline-block;
