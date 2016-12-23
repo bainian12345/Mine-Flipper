@@ -24,7 +24,7 @@ app.service('gameService', function() {
 		board = {
 			grids: new Array(ROWS),
 			hSums: initSums(ROWS),
-			vSums: new initSums(COLS)
+			vSums: initSums(COLS)
 		};
 		for (var row = 0, count = 0; row < ROWS; row++) {
 			board.grids[row] = new Array(COLS);

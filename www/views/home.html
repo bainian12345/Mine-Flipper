@@ -1,7 +1,32 @@
 <ionic-content class="view">
 	<div class="board">
 		<div ng-repeat="row in board.grids" class="board-row">
-			<span ng-repeat="cell in row track by $index" class="board-cell">{{cell.value}}</span>
+			<div ng-repeat="cell in row track by $index" class="board-cell">
+				{{cell.value}}
+			</div>
+			<div class="sum-cell">
+				<div class="sum values-sum">
+					<span class="icon"><img src="../img/sum.png"></span>
+					<span>{{board.hSums[$index].values}}</span>
+				</div>
+				<div class="sum mines-sum">
+					<span class="icon"><img src="../img/mine.png"></span>
+					<span>{{board.hSums[$index].mines}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="board-row">
+			<div ng-repeat="vSum in board.vSums track by $index" class="sum-cell">
+				<div class="sum values-sum">
+					<span class="icon"><img src="../img/sum.png"></span>
+					<span>{{board.vSums[$index].values}}</span>
+				</div>
+				<div class="sum mines-sum">
+					<span class="icon"><img src="../img/mine.png"></span>
+					<span>{{board.vSums[$index].mines}}</span>
+				</div>
+			</div>
+			<div></div>
 		</div>
 	</div>
 	<div class="buttons-container">
