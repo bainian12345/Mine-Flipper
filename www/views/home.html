@@ -1,12 +1,16 @@
 <ionic-content class="view">
+	<div ng-class="{'hidden': !board.winner}" class="game-over">
+		<span>Game Over! Winner is </span><br>
+		<span ng-class="{'player1': board.winner === 1, 'player2': board.winner === 2}">{{(board.winner === 1) ? "Player 1" : "Player 2"}}</span>
+	</div>
 	<div class="board">
 		<div class="players-container">
 			<div class="players" ng-class="{'player1-active': board.playerTurn === 1}">
 				<span>Player 1</span>
-				<span class="points1">{{board.playerPoints[0]}}</span>
+				<span class="points1 player1">{{board.playerPoints[0]}}</span>
 			</div>
 			<div class="players" ng-class="{'player2-active': board.playerTurn === 2}">
-				<span class="points2">{{board.playerPoints[1]}}</span>
+				<span class="points2 player2">{{board.playerPoints[1]}}</span>
 				<span>Player 2</span>
 			</div>
 		</div>

@@ -36,9 +36,18 @@
 	max-width: 764px;
 	margin: 0 auto;
 }
+.hidden {
+	visibility: hidden;
+}
+.game-over, .game-over h2 {
+	font-size: 7vw;
+	line-height: 7vw;
+	margin: 1vw auto;
+	text-align: center;
+}
 .players-container {
 	display: flex;
-	margin: 20px auto;
+	margin: 10px auto;
 }
 .players {
 	width: 100%;
@@ -51,13 +60,17 @@
 .players:last-child {
 	text-align: right;
 }
-.players .points1 {
+.player1 {
 	color: red;
+}
+.player2 {
+	color: green;
+}
+.players .points1 {
 	margin-right: 15px;
 	float: right;
 }
 .players .points2 {
-	color: green;
 	margin-left: 15px;
 	float: left;
 }
@@ -68,8 +81,8 @@
 	border: 2px solid green;
 }
 .board {
-	padding: 10px;
-	margin-bottom: 40px;
+	padding: 2vw;
+	margin-bottom: 3vh;
 }
 .board-row {
 	margin: 2px auto;

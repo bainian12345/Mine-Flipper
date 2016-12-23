@@ -26,7 +26,8 @@ app.service('gameService', function() {
 			hSums: initSums(ROWS),
 			vSums: initSums(COLS),
 			playerTurn: 1,
-			playerPoints: [0, 0]
+			playerPoints: [0, 0],
+			winner: null
 		};
 		for (var row = 0, count = 0; row < ROWS; row++) {
 			board.grids[row] = new Array(COLS);
@@ -53,7 +54,8 @@ app.service('gameService', function() {
 
 	this.flip = function(board, cell) {
 		var turn = board.playerTurn;
-		if (!cell || cell.flippedBy || !turn) return;
+		if (!cell || cell.flippedBy || board.winner || !turn) return;
+		if (cell.value === 0) board.winner = (turn === 1) ? 2 : 1;
 		board.grids[cell.row][cell.col].flippedBy = turn;
 		board.playerPoints[turn - 1] += cell.value;
 		board.playerTurn = (turn === 1) ? 2 : 1;

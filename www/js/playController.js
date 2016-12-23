@@ -11,4 +11,6 @@ app.controller('playController', function($scope, gameService) {
 	$scope.reveal = function() {
 		gameService.board = ["1", "2"];
 	};
+
+	$scope.startGame(gameService.aiBoard);
 });
