@@ -24,12 +24,14 @@ app.service('gameService', function() {
 		board = {
 			grids: new Array(ROWS),
 			hSums: initSums(ROWS),
-			vSums: initSums(COLS)
+			vSums: initSums(COLS),
+			playerTurn: 1,
+			playerPoints: [0, 0]
 		};
 		for (var row = 0, count = 0; row < ROWS; row++) {
 			board.grids[row] = new Array(COLS);
 			for (var col = 0, cell; col < COLS; col++) {
-				cell = {flipped: false}
+				cell = {flippedBy: 0}
 				if (mine_positions[count]) {
 					cell.value = 0; // 0 represents a mine
 					board.hSums[row].mines++;
@@ -38,7 +40,8 @@ app.service('gameService', function() {
 				else if (Math.random() < (15 / GOOD_GRIDS)) cell.value = 1;
 				else if (Math.random() < (17 / GOOD_GRIDS)) cell.value = 2;
 				else cell.value = 3;
-				cell.index = count;
+				cell.row = row;
+				cell.col = col;
 				count++;
 				board.grids[row][col] = cell;
 				board.hSums[row].values += cell.value;
@@ -47,4 +50,12 @@ app.service('gameService', function() {
 		}
 		return board;
 	};
+
+	this.flip = function(board, cell) {
+		var turn = board.playerTurn;
+		if (!cell || cell.flippedBy || !turn) return;
+		board.grids[cell.row][cell.col].flippedBy = turn;
+		board.playerPoints[turn - 1] += cell.value;
+		board.playerTurn = (turn === 1) ? 2 : 1;
+	}
 });

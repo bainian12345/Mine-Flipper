@@ -1,8 +1,18 @@
 <ionic-content class="view">
 	<div class="board">
+		<div class="players-container">
+			<div class="players" ng-class="{'player1-active': board.playerTurn === 1}">
+				<span>Player 1</span>
+				<span class="points1">{{board.playerPoints[0]}}</span>
+			</div>
+			<div class="players" ng-class="{'player2-active': board.playerTurn === 2}">
+				<span class="points2">{{board.playerPoints[1]}}</span>
+				<span>Player 2</span>
+			</div>
+		</div>
 		<div ng-repeat="row in board.grids" class="board-row">
-			<div ng-repeat="cell in row track by $index" class="board-cell">
-				{{cell.value}}
+			<div ng-repeat="cell in row track by $index" class="board-cell {{'flipped-by'+cell.flippedBy}}" ng-click="flip(cell)">
+				<span ng-if="cell.flippedBy">{{cell.value}}</span>
 			</div>
 			<div class="sum-cell">
 				<div class="sum values-sum">

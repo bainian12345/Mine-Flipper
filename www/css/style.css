@@ -36,50 +36,94 @@
 	max-width: 764px;
 	margin: 0 auto;
 }
+.players-container {
+	display: flex;
+	margin: 20px auto;
+}
+.players {
+	width: 100%;
+	display: inline-block;
+	line-height: 7vw;
+	font-size: 7vw;
+	padding-bottom: 8px;
+	border: 2px solid transparent;
+}
+.players:last-child {
+	text-align: right;
+}
+.players .points1 {
+	color: red;
+	margin-right: 15px;
+	float: right;
+}
+.players .points2 {
+	color: green;
+	margin-left: 15px;
+	float: left;
+}
+.player1-active {
+	border: 2px solid red;
+}
+.player2-active {
+	border: 2px solid green;
+}
 .board {
-	padding: 10px 30px;
+	padding: 10px;
 	margin-bottom: 40px;
 }
-.board .board-row {
-	display: flex;
+.board-row {
+	margin: 2px auto;
+	height: 14vw;
 }
-.board .board-row > div {
-	width: 100%;
+.board-row .flipped-by0 {
+	background-image: url('../img/questionmark.jpg');
+	background-size: contain;
+}
+.board-row .flipped-by1 {
+	background-color: red;
+}
+.board-row .flipped-by2 {
+	background-color: green;
+}
+.board-cell, .sum-cell {
+	display: inline-block;
+	width: 14vw;
+	height: 14vw;
+	border: 1px solid black;
+	border-radius: 2px;
+	margin: 2px;
+}
+.board-cell {
+	vertical-align: top;
+	line-height: 14vw;
 	text-align: center;
-	vertical-align: middle;
-	padding: 5% 10px 3% 10px;
+	font-size: 6vw;
+	text-shadow: 1px -1px #fff, 1px 1px #fff, -1px -1px #fff, -1px 1px #fff;
+	font-weight: 900;
 }
-.board .board-cell {
-	display: inline-block;
-	box-sizing: border-box;
-	font-size: 2em;
-	border: 1px solid #000;
-}
-.board .board-row .sum-cell {
-	padding: 3% 10px 5% 10px;
-}
-.board .sum-cell > div {
-	display: inline-block;
-	position: relative;
+.board-cell img {
 	width: 100%;
-	height: 50%;
-	text-align: center;
-	font-size: 1.5em;
+	height: 100%;
 }
-.sum span {
+.sum-cell {
+	border: none;
+	text-align: right;
+}
+.sum-cell span {
 	display: inline-block;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	height: 50%;
-	width: 50%;
+	width: 100%;
+	height: 100%;
 }
-.sum .icon {
-	left: 0;
-}
-.sum span img {
+.sum-cell img {
 	height: 100%;
 	width: auto;
+}
+.sum {
+	height: 50%;
+	display: flex;
+	font-size: 5vw;
+	line-height: 5vw;
+	padding: 5px 0;
 }
 .buttons-container {
 	width: 100%;
