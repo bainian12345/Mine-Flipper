@@ -1,6 +1,6 @@
 <ionic-content class="view">
 	<div class="board">
-		<div ng-repeat="row in board" class="board-row">
+		<div ng-repeat="row in board.grids" class="board-row">
 			<span ng-repeat="cell in row track by $index" class="board-cell">{{cell.value}}</span>
 		</div>
 	</div>
