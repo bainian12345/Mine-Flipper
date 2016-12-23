@@ -23,6 +23,7 @@ app.service('gameService', function() {
 		}
 		game = {
 			board: new Array(ROWS),
+			newestFlip: null,
 			hSums: initSums(ROWS),
 			vSums: initSums(COLS),
 			playerTurn: 1,
@@ -58,6 +59,7 @@ app.service('gameService', function() {
 			stopped = game.stopped;
 		if (!cell || cell.flippedBy || game.winner || !turn) return;
 		game.board[cell.row][cell.col].flippedBy = turn;
+		game.newestFlip = {row: cell.row, col: cell.col};
 		if (cell.value === 0) {
 			game.winner = (turn === 1) ? 2 : 1;
 			return;
