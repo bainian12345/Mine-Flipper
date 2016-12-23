@@ -66,6 +66,9 @@
 .player2 {
 	color: green;
 }
+.tied {
+	color: #ff9933;
+}
 .players .points1 {
 	margin-right: 15px;
 	float: right;

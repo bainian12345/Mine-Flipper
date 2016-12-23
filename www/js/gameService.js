@@ -22,6 +22,12 @@ app.service('gameService', function() {
 		game.winner = winner;
 	}
 
+	function decideWinner(game) {
+		if (game.playerPoints[0] > game.playerPoints[1]) return 1;
+		if (game.playerPoints[0] < game.playerPoints[1]) return 2;
+		return 3;
+	}
+
 	this.startGame = function(game) {
 		var mine_positions = {};
 		for (var i = 0, num; i < MINES; i++) {
@@ -33,6 +39,7 @@ app.service('gameService', function() {
 		game = {
 			board: new Array(ROWS),
 			newestFlip: null,
+			totalFlips: 0,
 			hSums: initSums(ROWS),
 			vSums: initSums(COLS),
 			playerTurn: 1,
@@ -74,13 +81,15 @@ app.service('gameService', function() {
 			return;
 		}
 		game.playerPoints[turn - 1] += cell.value;
+		game.totalFlips++;
+		if (ROWS * COLS - game.totalFlips <= MINES) setWinner(game, decideWinner(game));
 		game.playerTurn = ((turn === 1 && stopped !== 2) || stopped === 1) ? 2 : 1;
 		if (stopped && game.playerPoints[turn - 1] > game.playerPoints[stopped - 1]) setWinner(game, turn);
 	}
 
 	this.stopFlipping = function(game) {
 		if (game.stopped) {
-			setWinner(game, (game.playerPoints[0] > game.playerPoints[1]) ? 1 : 2);
+			setWinner(game, decideWinner(game));
 			return;
 		}
 		if (game.playerTurn === 1 && game.playerPoints[0] < game.playerPoints[1]) {
