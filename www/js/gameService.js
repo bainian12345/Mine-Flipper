@@ -13,6 +13,15 @@ app.service('gameService', function() {
 		return sums;
 	}
 
+	function setWinner(game, winner) {
+		game.board.forEach(function(row) {
+			row.forEach(function(cell) {
+				if (!cell.flippedBy) cell.flippedBy = true;
+			});
+		});
+		game.winner = winner;
+	}
+
 	this.startGame = function(game) {
 		var mine_positions = {};
 		for (var i = 0, num; i < MINES; i++) {
@@ -61,25 +70,25 @@ app.service('gameService', function() {
 		game.board[cell.row][cell.col].flippedBy = turn;
 		game.newestFlip = {row: cell.row, col: cell.col};
 		if (cell.value === 0) {
-			game.winner = (turn === 1) ? 2 : 1;
+			setWinner(game, (turn === 1) ? 2 : 1);
 			return;
 		}
 		game.playerPoints[turn - 1] += cell.value;
 		game.playerTurn = ((turn === 1 && stopped !== 2) || stopped === 1) ? 2 : 1;
-		if (stopped && game.playerPoints[turn - 1] > game.playerPoints[stopped - 1]) game.winner = turn;
+		if (stopped && game.playerPoints[turn - 1] > game.playerPoints[stopped - 1]) setWinner(game, turn);
 	}
 
 	this.stopFlipping = function(game) {
 		if (game.stopped) {
-			game.winner = (game.playerPoints[0] > game.playerPoints[1]) ? 1 : 2;
+			setWinner(game, (game.playerPoints[0] > game.playerPoints[1]) ? 1 : 2);
 			return;
 		}
 		if (game.playerTurn === 1 && game.playerPoints[0] < game.playerPoints[1]) {
-			game.winner = 2;
+			setWinner(game, 2);
 			return;
 		}
 		if (game.playerTurn === 2 && game.playerPoints[0] > game.playerPoints[1]) {
-			game.winner = 1;
+			setWinner(game, 1);
 			return;
 		}
 		game.stopped = game.playerTurn;

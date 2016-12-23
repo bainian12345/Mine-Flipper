@@ -17,7 +17,8 @@
 		<div ng-repeat="row in game.board" class="board-row">
 			<div ng-repeat="cell in row track by $index" class="board-cell {{'flipped-by'+cell.flippedBy}}"
 				ng-class="{'newestCell': (cell.row === game.newestFlip.row && cell.col === game.newestFlip.col)}" ng-click="flip(cell)">
-				<span ng-if="cell.flippedBy">{{cell.value}}</span>
+				<span ng-if="cell.flippedBy && cell.value">{{cell.value}}</span>
+				<span ng-if="cell.flippedBy && cell.value === 0"><img src="../img/mine.png"></span>
 			</div>
 			<div class="sum-cell">
 				<div class="sum values-sum">
