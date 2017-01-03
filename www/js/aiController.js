@@ -29,11 +29,12 @@ app.controller('aiController', function($scope, gameService) {
 		for (var row = 0, boardRow; row < board.length; row++) {
 			boardRow = board[row];
 			for (var col = 0,
-							 hSum = hSums[row].values,
-							 vSum = vSums[col].values,
-							 hMines = hSums[row].mines,
-							 vMines = vSums[col].mines;
+							 hSum, vSum, hMines, vMines;
 					col < boardRow.length; col++) {
+				hSum = hSums[row].values;
+				vSum = vSums[col].values;
+				hMines = hSums[row].mines;
+				vMines = vSums[col].mines;
 				if (!boardRow[col].flippedBy) {
 					if (!bestCell) bestCell = board[row][col];
 					else {
