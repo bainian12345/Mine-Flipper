@@ -7,7 +7,7 @@ app.controller('mainController', function($scope, $location) {
 	};
 	$scope.pages = [
 		{"name": "Play", "href": "/", "active": true},
-		{"name": "Solve", "href": "/#/solve", "active": false},
+		{"name": "Vs. AI", "href": "/#/ai", "active": false},
 		{"name": "Rules", "href": "/#/rules", "active": false}
 	];
 });

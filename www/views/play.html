@@ -48,7 +48,8 @@
 		</div>
 	</div>
 	<div class="buttons-container">
-		<button ng-click="startGame()">Start</button>
-		<button ng-click="stopFlipping()">Stop Flipping</button>
+		<button ng-repeat="button in buttons" ng-click="button.action()">
+			{{button.text}}
+		</button>
 	</div>
 </ionic-content>

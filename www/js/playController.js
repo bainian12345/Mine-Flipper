@@ -1,15 +1,21 @@
 app.controller('playController', function($scope, gameService) {
-
-	$scope.startGame = function() {
-		$scope.game = gameService.startGame(gameService.multiGame);
-	}
+	$scope.buttons = [
+		{
+			text: "Restart",
+			action: function() {
+				$scope.game = gameService.getMultiGame(true);
+			}
+		},
+		{
+			text: "Stop Flipping",
+			action: function() {
+				gameService.stopFlipping($scope.game);
+			}
+		}
+	];
 
 	$scope.flip = function(cell) {
 		gameService.flip($scope.game, cell);
 	}
-
-	$scope.stopFlipping = function() {
-		gameService.stopFlipping($scope.game);
-	};
-	$scope.startGame(gameService.multiGame);
+	$scope.game = gameService.getMultiGame(false);
 });

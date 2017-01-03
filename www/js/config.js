@@ -2,13 +2,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('/', {
           url: '/',
-          templateUrl: '../views/home.html',
+          templateUrl: '../views/play.html',
           controller: 'playController'
       })
-      .state('solve', {
-          url: '/solve',
-          templateUrl: '../views/solve.html',
-          controller: 'solveController'
+      .state('ai', {
+          url: '/ai',
+          templateUrl: '../views/play.html',
+          controller: 'aiController'
       })
       .state('rules', {
           url: '/rules',

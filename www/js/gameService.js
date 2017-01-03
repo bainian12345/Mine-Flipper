@@ -2,8 +2,8 @@ app.service('gameService', function() {
 	var MINES = 6,
 		ROWS = 5,
 		COLS = 5,
-		GOOD_GRIDS = ROWS * COLS - MINES;
-	this.multiGame = {};
+		GOOD_GRIDS = ROWS * COLS - MINES,
+		multiGame, aiGame;
 
 	function initSums(length) {
 		var sums = new Array(length);
@@ -28,25 +28,25 @@ app.service('gameService', function() {
 		return 3;
 	}
 
-	this.startGame = function(game) {
-		var mine_positions = {};
+	function startGame() {
+		var mine_positions = {}
+				game = {
+					board: new Array(ROWS),
+					newestFlip: null,
+					totalFlips: 0,
+					hSums: initSums(ROWS),
+					vSums: initSums(COLS),
+					playerTurn: 1,
+					playerPoints: [0, 0],
+					stopped: null,
+					winner: null
+				};
 		for (var i = 0, num; i < MINES; i++) {
 			while (!num || mine_positions[num - 1]) {
 				num = Math.ceil(Math.random() * ROWS * COLS);
 			}
 			mine_positions[num - 1] = true;
 		}
-		game = {
-			board: new Array(ROWS),
-			newestFlip: null,
-			totalFlips: 0,
-			hSums: initSums(ROWS),
-			vSums: initSums(COLS),
-			playerTurn: 1,
-			playerPoints: [0, 0],
-			stopped: null,
-			winner: null
-		};
 		for (var row = 0, count = 0; row < ROWS; row++) {
 			game.board[row] = new Array(COLS);
 			for (var col = 0, cell; col < COLS; col++) {
@@ -70,6 +70,16 @@ app.service('gameService', function() {
 		return game;
 	};
 
+	this.getMultiGame = function(isNew) {
+		if (!multiGame || isNew) multiGame = startGame(multiGame);
+		return multiGame;
+	};
+
+	this.getAiGame = function(isNew) {
+		if (!aiGame || isNew) aiGame = startGame(aiGame);
+		return aiGame;
+	};
+
 	this.flip = function(game, cell) {
 		var turn = game.playerTurn,
 			stopped = game.stopped;
@@ -85,7 +95,7 @@ app.service('gameService', function() {
 		if (ROWS * COLS - game.totalFlips <= MINES) setWinner(game, decideWinner(game));
 		game.playerTurn = ((turn === 1 && stopped !== 2) || stopped === 1) ? 2 : 1;
 		if (stopped && game.playerPoints[turn - 1] > game.playerPoints[stopped - 1]) setWinner(game, turn);
-	}
+	};
 
 	this.stopFlipping = function(game) {
 		if (game.stopped) {
@@ -102,5 +112,5 @@ app.service('gameService', function() {
 		}
 		game.stopped = game.playerTurn;
 		game.playerTurn = (game.playerTurn === 1) ? 2 : 1;
-	}
+	};
 });
