@@ -2,18 +2,18 @@
 	<div ng-class="{'hidden': !game.winner}" class="game-over">
 		<span>Game Over! Winner is </span><br>
 		<span ng-class="{'player1': game.winner === 1, 'player2': game.winner === 2, 'tied': game.winner === 3}">
-			{{(game.winner === 1) ? "Player 1" : (game.winner === 2) ? "Player 2" : "Tied"}}
+			{{winner()}}
 		</span>
 	</div>
 	<div class="board">
 		<div class="players-container">
 			<div class="players" ng-class="{'player1-active': game.playerTurn === 1}">
-				<span>Player 1</span>
+				<span>{{(ai) ? "Player" : "Player 1"}}</span>
 				<span class="points1 player1">{{game.playerPoints[0]}}</span>
 			</div>
 			<div class="players" ng-class="{'player2-active': game.playerTurn === 2}">
 				<span class="points2 player2">{{game.playerPoints[1]}}</span>
-				<span>Player 2</span>
+				<span>{{(ai) ? "AI" : "Player 2"}}</span>
 			</div>
 		</div>
 		<div ng-repeat="row in game.board" class="board-row">

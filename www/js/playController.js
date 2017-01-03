@@ -18,4 +18,12 @@ app.controller('playController', function($scope, gameService) {
 		gameService.flip($scope.game, cell);
 	}
 	$scope.game = gameService.getMultiGame(false);
+	$scope.winner = function() {
+		switch($scope.game.winner) {
+			case 1: return "Player 1";
+			case 2: return "Player 2";
+			case 3: return "Tied";
+			default: return;
+		}
+	};
 });

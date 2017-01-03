@@ -1,4 +1,5 @@
 app.controller('aiController', function($scope, gameService) {
+	$scope.ai = true;
 	$scope.buttons = [
 		{
 			text: "Restart",
@@ -51,4 +52,12 @@ app.controller('aiController', function($scope, gameService) {
 	}
 
 	$scope.game = gameService.getAiGame(false);
+	$scope.winner = function() {
+		switch($scope.game.winner) {
+			case 1: return "Player";
+			case 2: return "AI";
+			case 3: return "Tied";
+			default: return;
+		}
+	};
 });
