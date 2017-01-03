@@ -15,6 +15,7 @@ app.controller('playController', function($scope, gameService) {
 	];
 
 	$scope.flip = function(cell) {
+		if ($scope.game.winner) return;
 		gameService.flip($scope.game, cell);
 	}
 	$scope.game = gameService.getMultiGame(false);
