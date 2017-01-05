@@ -16,12 +16,11 @@ app.controller('aiController', function($scope, gameService) {
 	];
 
 	$scope.flip = function(cell) {
-		var bestCell;
 		if ($scope.game.winner) return;
 		gameService.flip($scope.game, cell);
-		bestCell = findBestCell($scope.game);
-		gameService.flip($scope.game, bestCell);
+		gameService.flip($scope.game, findBestCell($scope.game));
 	}
+
 
 	function findBestCell(game) {
 		var board = game.board,
