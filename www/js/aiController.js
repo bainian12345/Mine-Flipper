@@ -11,6 +11,7 @@ app.controller('aiController', function($scope, gameService) {
 			text: "Stop Flipping",
 			action: function() {
 				gameService.stopFlipping($scope.game);
+				gameService.flip($scope.game, findBestCell($scope.game));
 			}
 		}
 	];
