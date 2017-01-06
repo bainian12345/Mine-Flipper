@@ -1,5 +1,6 @@
 .content .tabs {
 	top: 0;
+	padding: 0;
 }
 .content .tab-content {
 	top: 49px;
@@ -78,6 +79,11 @@
 .board-row .newestCell {
 	border: 3px solid black;
 }
+.board-row .mine-cell {
+	background-image: url('../img/mine.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
 .board-cell, .sum-cell {
 	display: inline-block;
 	width: 14vw;
@@ -116,6 +122,17 @@
 	font-size: 5vw;
 	line-height: 5vw;
 	padding: 5px 0;
+}
+.sum .icon {
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: right;
+}
+.values-sum .icon {
+	background-image: url('../img/sum.png');
+}
+.mines-sum .icon {
+	background-image: url('../img/mine.png');
 }
 .buttons-container {
 	width: 100%;

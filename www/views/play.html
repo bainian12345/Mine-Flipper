@@ -17,18 +17,18 @@
 			</div>
 		</div>
 		<div ng-repeat="row in game.board" class="board-row">
-			<div ng-repeat="cell in row track by $index" class="board-cell {{'flipped-by'+cell.flippedBy}}"
+			<div ng-repeat="cell in row track by $index" ng-class="{'mine-cell': (cell.flippedBy && cell.value === 0)}" class="board-cell {{'flipped-by'+cell.flippedBy}}"
 				ng-class="{'newestCell': (cell.row === game.newestFlip.row && cell.col === game.newestFlip.col)}" ng-click="flip(cell)">
 				<span ng-if="cell.flippedBy && cell.value">{{cell.value}}</span>
-				<span ng-if="cell.flippedBy && cell.value === 0"><img src="../img/mine.png"></span>
+				<span ng-if="cell.flippedBy && cell.value === 0"></span>
 			</div>
 			<div class="sum-cell">
 				<div class="sum values-sum">
-					<span class="icon"><img src="../img/sum.png"></span>
+					<span class="icon"></span>
 					<span>{{game.hSums[$index].values}}</span>
 				</div>
 				<div class="sum mines-sum">
-					<span class="icon"><img src="../img/mine.png"></span>
+					<span class="icon"></span>
 					<span>{{game.hSums[$index].mines}}</span>
 				</div>
 			</div>
@@ -36,11 +36,11 @@
 		<div class="board-row">
 			<div ng-repeat="vSum in game.vSums track by $index" class="sum-cell">
 				<div class="sum values-sum">
-					<span class="icon"><img src="../img/sum.png"></span>
+					<span class="icon"></span>
 					<span>{{game.vSums[$index].values}}</span>
 				</div>
 				<div class="sum mines-sum">
-					<span class="icon"><img src="../img/mine.png"></span>
+					<span class="icon"></span>
 					<span>{{game.vSums[$index].mines}}</span>
 				</div>
 			</div>
