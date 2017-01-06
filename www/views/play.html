@@ -1,9 +1,9 @@
 <ionic-content class="view">
 	<div ng-class="{'hidden': !game.winner}" class="game-over">
-		<span>Game Over! Winner is </span><br>
-		<span ng-class="{'player1': game.winner === 1, 'player2': game.winner === 2, 'tied': game.winner === 3}">
+		<div>Game Over! Winner is </div>
+		<div ng-class="{'player1': game.winner === 1, 'player2': game.winner === 2, 'tied': game.winner === 3}">
 			{{winner()}}
-		</span>
+		</div>
 	</div>
 	<div class="board">
 		<div class="players-container">

@@ -14,11 +14,14 @@
 .hidden {
 	visibility: hidden;
 }
-.game-over, .game-over h2 {
-	font-size: 7vw;
-	line-height: 7vw;
-	margin: 1vw auto;
+.game-over {
+	font-size: 2em;
+	height: 2em;
+	margin: 2vh auto;
 	text-align: center;
+}
+.game-over > div {
+	padding-bottom: 5px;
 }
 .players-container {
 	display: flex;
@@ -59,8 +62,8 @@
 	border: 2px solid green;
 }
 .board {
-	padding: 2vw;
-	margin-bottom: 3vh;
+	padding: 0 2vw;
+	margin-bottom: 15px;
 }
 .board-row {
 	margin: 2px auto;
