@@ -17,21 +17,65 @@ var app = angular.module("app", ['ionic'])
         });
       })
       .config(function($stateProvider, $urlRouterProvider) {
+
+        // Ionic uses AngularUI Router which uses the concept of states
+        // Learn more here: https://github.com/angular-ui/ui-router
+        // Set up the various states which the app can be in.
+        // Each state's controller can be found in controllers.js
         $stateProvider
-          .state('/', {
-              url: '/',
-              templateUrl: '../views/play.html',
-              controller: 'playController'
+          .state('tab', {
+            url: '/tab',
+            abstract: true,
+            templateUrl: 'views/tabs.html'
           })
-          .state('ai', {
+          .state('tab.play', {
+            url: '/play',
+            views: {
+              'tab-play': {
+                templateUrl: 'views/play.html',
+                controller: 'playController'
+              }
+            }
+          })
+          .state('tab.ai', {
               url: '/ai',
-              templateUrl: '../views/play.html',
-              controller: 'aiController'
-          })
-          .state('rules', {
+              views: {
+                'tab-ai': {
+                  templateUrl: 'views/play.html',
+                  controller: 'aiController'
+                }
+              }
+            })
+            .state('tab.rules', {
               url: '/rules',
-              templateUrl: '../views/rules.html',
-          });
-          $urlRouterProvider.otherwise('/');
+              views: {
+                'tab-rules': {
+                  templateUrl: 'views/rules.html',
+                }
+              }
+            });
+
+        // if none of the above states are matched, use this as the fallback
+        $urlRouterProvider.otherwise('/tab/play');
+
       });
+
+      // .config(function($stateProvider, $urlRouterProvider) {
+      //   $stateProvider
+      //     .state('/', {
+      //         url: '/',
+      //         templateUrl: '../views/play.html',
+      //         controller: 'playController'
+      //     })
+      //     .state('ai', {
+      //         url: '/ai',
+      //         templateUrl: '../views/play.html',
+      //         controller: 'aiController'
+      //     })
+      //     .state('rules', {
+      //         url: '/rules',
+      //         templateUrl: '../views/rules.html',
+      //     });
+      //     $urlRouterProvider.otherwise('/');
+      // });
 

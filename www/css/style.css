@@ -1,34 +1,8 @@
-.header {
-	background-color: #47b39d;
-	height: 10vh;
-	padding: 0;
+.content .tabs {
+	top: 0;
 }
-.header ul {
-	display: flex;
-	width: 100%;
-}
-.header li {
-	list-style: none;
-	display: inline-block;
-	width: 100%;
-	text-align: center;
-	vertical-align: middle;
-}
-.header ul .active {
-	background-color: #2c6d60;
-}
-.header a {
-	display: inline-block;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 4vh;
-    line-height: 10vh;
-	color: #fff;
-	text-decoration: none;
-	width: 100%;
-}
-.content {
-	top: 10vh;
-	background-color: #ebebeb;
+.content .tab-content {
+	top: 49px;
 }
 .view {
 	background-color: #ffdd99;

@@ -35,15 +35,7 @@
     <script src="js/playController.js"></script>
     <script src="js/aiController.js"></script>
   </head>
-  <body ng-app="app" ng-controller="mainController">
-      <ion-header-bar class="header">
-          <ul>
-              <li ng-repeat="page in pages" ng-click="switchPage($event, page)">
-                  <a href="{{page.href}}" ng-class="{active: page.active}">{{page.name}}</a>
-              </li>
-          </ul>
-      </ion-header-bar>
-      <ion-nav-view class="content">
-      </ion-nav-view>
+  <body ng-app="app">
+      <ion-nav-view class="content"></ion-nav-view>
   </body>
 </html>
